@@ -6,7 +6,7 @@ public class Task3
 
     public static void main(String[] args)
     {
-        List<String> parsedWords = parseWords(new String[]{"apple banana", "orange", "banana", "kiwi strawberry blueberry"});
+        List<String> parsedWords = parseWords(new String[]{"apple banana", " orange", "banana", "kiwi strawberry blueberry"});
         System.out.println(parsedWords);
     }
 
@@ -18,7 +18,9 @@ public class Task3
              if (unparsedWord.contains(" ")) {
                  String[] newWords = unparsedWord.split(" ");
                  for (String newWord : newWords) {
-                     parsedWords.add(newWord);
+                     if (!newWord.isEmpty()) {
+                         parsedWords.add(newWord);
+                     }
                  }
              } else {
                  parsedWords.add(unparsedWord);

@@ -15,15 +15,11 @@ public class Task3
         List<String> parsedWords = new ArrayList<>();
 
         for (String unparsedWord : unparsedWords) {
-             if (unparsedWord.contains(" ")) {
-                 String[] newWords = unparsedWord.split(" ");
-                 for (String newWord : newWords) {
-                     if (!newWord.isEmpty()) {
-                         parsedWords.add(newWord);
-                     }
+             String[] newWords = unparsedWord.split(" ");
+             for (String newWord : newWords) {
+                 if (!newWord.isEmpty()) {
+                     parsedWords.add(newWord);
                  }
-             } else {
-                 parsedWords.add(unparsedWord);
              }
         }
         return parsedWords;

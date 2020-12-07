@@ -17,18 +17,12 @@ public class Task5
 
         for (char letter : letters) {
             String encodedLetter;
-            if (letter == 'Z') {
-                encodedLetter = "a";
-            } else if (letter == 'z') {
-                encodedLetter = "A";
+            if (letter == 'Z' || letter == 'z') {
+                encodedLetter = handleExceptionLetter(letter);
             } else {
                 encodedLetter = String.valueOf((char)((int) letter + 1));
-                if  (encodedLetter.equals(encodedLetter.toLowerCase())) {
-                    encodedLetter = encodedLetter.toUpperCase();
-                } else {
-                    encodedLetter = encodedLetter.toLowerCase();
-                }
             }
+            encodedLetter = changeCase(encodedLetter);
             encoded.append(encodedLetter);
         }
 
@@ -42,20 +36,37 @@ public class Task5
 
         for (char letter : letters) {
             String decodedLetter;
-            if (letter == 'a') {
-                decodedLetter = "Z";
-            } else if (letter == 'A') {
-                decodedLetter = "z";
+            if (letter == 'a' || letter == 'A') {
+                decodedLetter = handleExceptionLetter(letter);
             } else {
                 decodedLetter = String.valueOf((char)((int) letter - 1));
-                if  (decodedLetter.equals(decodedLetter.toLowerCase())) {
-                    decodedLetter = decodedLetter.toUpperCase();
-                } else {
-                    decodedLetter = decodedLetter.toLowerCase();
-                }
             }
+            decodedLetter = changeCase(decodedLetter);
             decoded.append(decodedLetter);
         }
         return decoded.toString();
+    }
+
+    public static String changeCase(String letter)
+    {
+        if  (letter.equals(letter.toLowerCase())) {
+            return letter.toUpperCase();
+        } else {
+            return letter.toLowerCase();
+        }
+    }
+
+    public static String handleExceptionLetter(char letter)
+    {
+        String changed;
+        switch(letter) {
+            case 'Z': changed = "A"; break;
+            case 'z': changed = "a"; break;
+            case 'a': changed = "z"; break;
+            case 'A': changed = "Z"; break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + letter);
+        }
+        return changed;
     }
 }
